@@ -93,6 +93,37 @@ Deploying SharePoint Server with an Azure SQL Managed Instance lets you move you
 > [!NOTE]
 > Access Services isn't supported with Azure SQL Managed Instance.
 
+## Update SQL password
+
+1. Create a second admin account in the SQL Managed Instance Portal.
+1. Change the username and password for the second admin account by executing the following SharePoint PowerShell:
+
+```powershell
+$servers = Get-SPServer
+foreach ($server in $servers) {
+    $instance = $server.ServiceInstances | Where-Object {$_.TypeName -eq "Microsoft SharePoint Foundation Database"}
+    if ($null -ne $instance) {
+        break;
+    }
+}
+$instance.SecureDBCredential.Username = "<username>"
+$instance.SecureDBCredential.Password = "<password>"
+$instance.SecureDBCredential.Update()
+$instance.Update()
+$SPDBs = Get-SPDatabase
+foreach ($DB in $SPDBs)
+{
+     $DB.Username = "<username>"
+     $DB.Password = "<password>"
+     $DB.Update()
+}
+
+```
+
+3. Modify the original account password in the SQL Managed Instance Portal.
+4.	Change the username and password to original account with new password in SharePoint PowerShell from scripts in Step 2.
+5. Set the second admin account as **Inactive** or delete the second admin account.
+
 
 ## See also
 <a name="proc1"> </a>
