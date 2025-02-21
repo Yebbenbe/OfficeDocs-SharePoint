@@ -48,7 +48,7 @@ Deploying SharePoint Server with an Azure SQL MI lets you move your SQL Server o
 
    > [!NOTE]
    > You can join other VMs to Active Directory in subnet 1.
-   >
+   > 
    > No updates need to be installed for SharePoint Server Subscription Edition.
 
 3. Create an Azure SQL MI in subnet 2 within this resource group (ManagedInstance).
@@ -78,11 +78,11 @@ Deploying SharePoint Server with an Azure SQL MI lets you move your SQL Server o
          Connect-SPConfigurationDatabase -DatabaseServer <DBServer> -DatabaseName <ConfigDB> -DatabaseCredentials $DBCredential -Passphrase $FarmPassphrase -LocalServerRole <ServerRole> 
       ```
 
-   Where:
-   
-   - _\<DBServer\>_ is the name you gave the Azure SQL MI in Step 4.
-   - _\<ConfigDB\>_ is the name of the SharePoint configuration database to be created.
-   - _\<ServerRole\>_ is the SharePoint MinRole server role for this server in the SharePoint farm.
+      Where:
+      
+      - _\<DBServer\>_ is the name you gave the Azure SQL MI in Step 4.
+      - _\<ConfigDB\>_ is the name of the SharePoint configuration database to be created.
+      - _\<ServerRole\>_ is the SharePoint MinRole server role for this server in the SharePoint farm.
 
 5. Run the **SharePoint Products Configuration Wizard** to complete the configuration. Next, open Central Administration to complete the **Farm Configuration Wizard**.
 
@@ -97,27 +97,27 @@ Deploying SharePoint Server with an Azure SQL MI lets you move your SQL Server o
 1. Create a second admin account in the SQL MI Portal.
 1. Run the following commands in SharePoint PowerShell to change the username and password for the second admin account:
 
-```powershell
-$servers = Get-SPServer
-foreach ($server in $servers) {
-    $instance = $server.ServiceInstances | Where-Object {$_.TypeName -eq "Microsoft SharePoint Foundation Database"}
-    if ($null -ne $instance) {
-        break;
-    }
-}
-$instance.SecureDBCredential.Username = "<username>"
-$instance.SecureDBCredential.Password = "<password>"
-$instance.SecureDBCredential.Update()
-$instance.Update()
-$SPDBs = Get-SPDatabase
-foreach ($DB in $SPDBs)
-{
-     $DB.Username = "<username>"
-     $DB.Password = "<password>"
-     $DB.Update()
-}
+   ```powershell
+   $servers = Get-SPServer
+   foreach ($server in $servers) {
+      $instance = $server.ServiceInstances | Where-Object {$_.TypeName -eq "Microsoft SharePoint Foundation Database"}
+      if ($null -ne $instance) {
+         break;
+      }
+   }
+   $instance.SecureDBCredential.Username = "<username>"
+   $instance.SecureDBCredential.Password = "<password>"
+   $instance.SecureDBCredential.Update()
+   $instance.Update()
+   $SPDBs = Get-SPDatabase
+   foreach ($DB in $SPDBs)
+   {
+      $DB.Username = "<username>"
+      $DB.Password = "<password>"
+      $DB.Update()
+   }
 
-```
+   ```
 
 3. Modify the original account password in the SQL MI Portal.
 4.	Using the above script in SharePoint PowerShell, change the username and password to original account with new password.
