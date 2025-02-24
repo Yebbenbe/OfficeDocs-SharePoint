@@ -1,5 +1,5 @@
 ---
-ms.date: 01/17/2020
+ms.date: 02/24/2025
 title: "Prevent guest access to files while DLP rules are applied"
 ms.reviewer: samust
 ms.author: ruihu
