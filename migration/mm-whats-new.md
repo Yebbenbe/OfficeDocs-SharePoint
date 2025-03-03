@@ -32,6 +32,9 @@ Help us improve Migration Manager by sending your suggestions and reporting bugs
 ## Coming soon
 - **File version migration.** Support for migrating file version histories in cloud scenarios.
 
+## March 2025
+
+- **Certificate Based Authentication**. Migration Manager allows users to use Azure App Registrations with certificate authentication as the identity model to migrate File Share. [Learn more](/sharepointmigration/mm-with-cba).
 ## December 2024
 - **Large file support for cloud migrations**. All migration scenarios now support migrating files up to 250 GB.
 - **Migration Manager Lite Private Preview**. Migration Manager Lite is a simplified version of Migration Manager designed to help SMB customers easily migrate their content from Google Drive to Microsoft 365. [Sign up for the preview](https://forms.office.com/r/rkBiy8a4Rr).
