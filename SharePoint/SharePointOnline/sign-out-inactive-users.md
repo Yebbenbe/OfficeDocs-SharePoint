@@ -87,9 +87,9 @@ If users don't select **Continue**, they're automatically signed out, and the fo
 
    - **-Enabled** specifies whether idle session sign-out is enabled or disabled by using **$true** or **$false**.
 
-   - **-WarnAfter** specifies the amount of after which a user is notified that they'll be signed out after a period of inactivity as a **New-TimeSpan** which can be configured in seconds, minutes, or hours.
-
-   - **-SignOutAfter** specifies the amount of time after which is a user is signed out of Microsoft 365 if they don't respond to the **-WarnAfter** prompt.
+   - **-WarnAfter** specifies the period of inactivity required before the user is warned. Configured as a **New-TimeSpan** which can be configured in seconds, minutes, or hours. This countdown begins on inactivity. This is not the same as the value shown on the web console.
+(
+   - **-SignOutAfter** specifies the duration after which they are signed out, unless they interact with the prior warning. This countdown runs concurrently with the above - not successively.
 
 > [!NOTE]
 > You must specify values for both **WarnAfter** and **SignOutAfter**. The **SignOutAfter** must be greater than the **WarnAfter** value.
